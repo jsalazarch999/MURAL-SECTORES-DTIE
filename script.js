@@ -7,7 +7,46 @@ const drawerDesc = document.getElementById("drawerDesc");
 const drawerFlow = document.getElementById("drawerFlow");
 const closeButton = document.getElementById("close");
 
-function selectCard(card) {
+function positionDrawer(event, card) {
+  const margin = 16;
+
+  let clickX;
+  let clickY;
+
+  if (event && event.clientX && event.clientY) {
+    clickX = event.clientX;
+    clickY = event.clientY;
+  } else {
+    const rect = card.getBoundingClientRect();
+    clickX = rect.left + rect.width / 2;
+    clickY = rect.top + rect.height / 2;
+  }
+
+  drawer.classList.add("show");
+
+  const drawerRect = drawer.getBoundingClientRect();
+
+  let x = clickX;
+  let y = clickY + 18;
+
+  const minX = drawerRect.width / 2 + margin;
+  const maxX = window.innerWidth - drawerRect.width / 2 - margin;
+
+  x = Math.max(minX, Math.min(x, maxX));
+
+  if (y + drawerRect.height > window.innerHeight - margin) {
+    y = clickY - drawerRect.height - 18;
+  }
+
+  if (y < margin) {
+    y = margin;
+  }
+
+  drawer.style.setProperty("--drawer-x", `${x}px`);
+  drawer.style.setProperty("--drawer-y", `${y}px`);
+}
+
+function selectCard(card, event) {
   cards.forEach((item) => {
     item.classList.remove("active");
   });
@@ -19,7 +58,9 @@ function selectCard(card) {
   drawerDesc.textContent = card.dataset.desc;
   drawerFlow.textContent = card.dataset.flow;
 
-  drawer.classList.add("show", "pulse");
+  positionDrawer(event, card);
+
+  drawer.classList.add("pulse");
 
   setTimeout(() => {
     drawer.classList.remove("pulse");
@@ -27,14 +68,14 @@ function selectCard(card) {
 }
 
 cards.forEach((card) => {
-  card.addEventListener("click", () => {
-    selectCard(card);
+  card.addEventListener("click", (event) => {
+    selectCard(card, event);
   });
 
   card.addEventListener("keydown", (event) => {
     if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
-      selectCard(card);
+      selectCard(card, event);
     }
   });
 
