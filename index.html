@@ -9,7 +9,23 @@
   />
   <title>La economía en movimiento</title>
 
-  <link rel="stylesheet" href="styles.css" />
+  <!-- CSS modular: cada archivo cubre una responsabilidad.
+       El orden importa: base (variables) primero, responsive al final. -->
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/sectors.css" />
+  <link rel="stylesheet" href="css/connector.css" />
+  <link rel="stylesheet" href="css/drawer.css" />
+  <!-- Animaciones: un archivo por ilustración. Para animar una nueva
+       tarjeta se crea su archivo aquí y se agrega un link, sin tocar
+       los demás. interfaz.css contiene lo compartido y reduced-motion. -->
+  <link rel="stylesheet" href="css/animations/interfaz.css" />
+  <link rel="stylesheet" href="css/animations/agricultura.css" />
+  <link rel="stylesheet" href="css/animations/pesca.css" />
+  <link rel="stylesheet" href="css/animations/mineria.css" />
+  <link rel="stylesheet" href="css/animations/manufactura.css" />
+  <link rel="stylesheet" href="css/animations/construccion.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
 </head>
 <body>
   <div class="screen">
@@ -71,7 +87,7 @@
 
             <div class="illustration">
               <svg viewBox="0 0 200 120" aria-hidden="true">
-                <circle cx="156" cy="26" r="17" fill="#f4b942" />
+                <circle class="agri-sun" cx="156" cy="26" r="17" fill="#f4b942" />
                 <path
                   d="M0 95 C50 65 100 112 200 76 L200 120 L0 120Z"
                   fill="#8cc465"
@@ -80,24 +96,29 @@
                   d="M0 107 C50 76 110 125 200 90 L200 120 L0 120Z"
                   fill="#4f9d4c"
                 />
-                <path
-                  d="M60 90 C58 58 73 42 88 36 C78 56 80 73 60 90Z"
-                  fill="#2e9068"
-                />
-                <path
-                  d="M62 90 C63 58 48 42 34 35 C42 58 41 74 62 90Z"
-                  fill="#45a97d"
-                />
-                <rect x="59" y="58" width="5" height="41" rx="2" fill="#1d5c40" />
-                <path
-                  d="M106 94 C105 66 117 52 132 45 C122 62 124 76 106 94Z"
-                  fill="#2e9068"
-                />
-                <path
-                  d="M108 94 C110 67 96 52 83 46 C91 64 91 78 108 94Z"
-                  fill="#45a97d"
-                />
-                <rect x="105" y="63" width="5" height="35" rx="2" fill="#1d5c40" />
+                <!-- Cada planta va en un <g> para que hojas y tallo se mezan juntos -->
+                <g class="agri-plant agri-plant-1">
+                  <path
+                    d="M60 90 C58 58 73 42 88 36 C78 56 80 73 60 90Z"
+                    fill="#2e9068"
+                  />
+                  <path
+                    d="M62 90 C63 58 48 42 34 35 C42 58 41 74 62 90Z"
+                    fill="#45a97d"
+                  />
+                  <rect x="59" y="58" width="5" height="41" rx="2" fill="#1d5c40" />
+                </g>
+                <g class="agri-plant agri-plant-2">
+                  <path
+                    d="M106 94 C105 66 117 52 132 45 C122 62 124 76 106 94Z"
+                    fill="#2e9068"
+                  />
+                  <path
+                    d="M108 94 C110 67 96 52 83 46 C91 64 91 78 108 94Z"
+                    fill="#45a97d"
+                  />
+                  <rect x="105" y="63" width="5" height="35" rx="2" fill="#1d5c40" />
+                </g>
               </svg>
             </div>
 
@@ -115,42 +136,53 @@
 
             <div class="illustration">
               <svg viewBox="0 0 200 120" aria-hidden="true">
+                <!-- El agua y la espuma se extienden de -40 a 240 (una onda extra
+                     a cada lado) para poder desplazarlas en bucle sin que se
+                     vean los bordes -->
                 <path
-                  d="M0 82 Q20 72 40 82 T80 82 T120 82 T160 82 T200 82 V120 H0Z"
+                  class="sea-water"
+                  d="M-40 82 Q-20 72 0 82 T40 82 T80 82 T120 82 T160 82 T200 82 T240 82 V120 H-40Z"
                   fill="#4a90c4"
                 />
                 <path
-                  d="M0 95 Q20 85 40 95 T80 95 T120 95 T160 95 T200 95"
+                  class="sea-foam"
+                  d="M-40 95 Q-20 85 0 95 T40 95 T80 95 T120 95 T160 95 T200 95 T240 95"
                   fill="none"
                   stroke="#d3ecf9"
                   stroke-width="5"
                 />
-                <path d="M48 46 H128 L108 70 H58Z" fill="#1f4e8c" />
-                <rect
-                  x="70"
-                  y="26"
-                  width="38"
-                  height="24"
-                  fill="#f6fbff"
-                  stroke="#1f4e8c"
-                  stroke-width="4"
-                />
-                <line
-                  x1="116"
-                  y1="26"
-                  x2="150"
-                  y2="82"
-                  stroke="#1b2a41"
-                  stroke-width="4"
-                />
-                <path
-                  d="M120 84 C139 65 168 68 184 84 C168 100 139 103 120 84Z"
-                  fill="#7dbfe8"
-                  stroke="#1f4e8c"
-                  stroke-width="4"
-                />
-                <circle cx="168" cy="82" r="3" fill="#1f4e8c" />
-                <path d="M120 84 L105 72 L105 96Z" fill="#5aa6d6" />
+                <!-- Barco + caña agrupados para que se mezan juntos -->
+                <g class="sea-boat">
+                  <path d="M48 46 H128 L108 70 H58Z" fill="#1f4e8c" />
+                  <rect
+                    x="70"
+                    y="26"
+                    width="38"
+                    height="24"
+                    fill="#f6fbff"
+                    stroke="#1f4e8c"
+                    stroke-width="4"
+                  />
+                  <line
+                    x1="116"
+                    y1="26"
+                    x2="150"
+                    y2="82"
+                    stroke="#1b2a41"
+                    stroke-width="4"
+                  />
+                </g>
+                <!-- Pez agrupado: cuerpo, ojo y cola nadan juntos -->
+                <g class="sea-fish">
+                  <path
+                    d="M120 84 C139 65 168 68 184 84 C168 100 139 103 120 84Z"
+                    fill="#7dbfe8"
+                    stroke="#1f4e8c"
+                    stroke-width="4"
+                  />
+                  <circle cx="168" cy="82" r="3" fill="#1f4e8c" />
+                  <path d="M120 84 L105 72 L105 96Z" fill="#5aa6d6" />
+                </g>
               </svg>
             </div>
 
@@ -168,20 +200,30 @@
 
             <div class="illustration">
               <svg viewBox="0 0 200 120" aria-hidden="true">
-                <rect x="20" y="68" width="65" height="28" rx="5" fill="#3a4454" />
+                <!-- Camión: carrocería, cabina y mineral vibran juntos;
+                     las ruedas quedan fuera del grupo, fijas al suelo -->
+                <g class="mine-truck">
+                  <rect x="20" y="68" width="65" height="28" rx="5" fill="#3a4454" />
+                  <path d="M24 65 L82 65 L70 45 L36 45Z" fill="#2c3646" />
+                  <ellipse cx="74" cy="72" rx="22" ry="14" fill="#e8a13c" />
+                </g>
                 <circle cx="34" cy="101" r="8" fill="#1b2a41" />
                 <circle cx="70" cy="101" r="8" fill="#1b2a41" />
-                <path d="M24 65 L82 65 L70 45 L36 45Z" fill="#2c3646" />
-                <ellipse cx="74" cy="72" rx="22" ry="14" fill="#e8a13c" />
                 <rect x="95" y="72" width="25" height="34" fill="#1b2a41" />
+                <!-- Llama del gas: parpadea estirándose desde su base -->
                 <path
+                  class="mine-flame"
                   d="M106 78 C102 88 96 96 106 103 C116 96 110 88 106 78Z"
                   fill="#e8a13c"
                 />
+                <!-- Balancín petrolero: las patas en A quedan fijas; el
+                     brazo con la cabeza cabecea pivotando sobre el apoyo -->
                 <line x1="138" y1="105" x2="153" y2="31" stroke="#1b2a41" stroke-width="6" />
                 <line x1="176" y1="105" x2="153" y2="31" stroke="#1b2a41" stroke-width="6" />
-                <line x1="140" y1="56" x2="185" y2="32" stroke="#1b2a41" stroke-width="6" />
-                <circle cx="185" cy="32" r="9" fill="#1b2a41" />
+                <g class="pump-beam">
+                  <line x1="140" y1="56" x2="185" y2="32" stroke="#1b2a41" stroke-width="6" />
+                  <circle cx="185" cy="32" r="9" fill="#1b2a41" />
+                </g>
                 <rect x="132" y="104" width="50" height="8" fill="#5e6b7c" />
               </svg>
             </div>
@@ -237,40 +279,44 @@
                 <rect x="56" y="26" width="15" height="39" fill="#3a4454" />
                 <rect x="28" y="31" width="15" height="8" fill="#b3402f" />
                 <rect x="56" y="22" width="15" height="8" fill="#b3402f" />
-                <circle
-                  cx="132"
-                  cy="64"
-                  r="22"
-                  fill="none"
-                  stroke="#3a4454"
-                  stroke-width="10"
-                />
-                <circle
-                  cx="177"
-                  cy="50"
-                  r="19"
-                  fill="none"
-                  stroke="#3a4454"
-                  stroke-width="9"
-                />
-                <circle
-                  cx="181"
-                  cy="88"
-                  r="22"
-                  fill="none"
-                  stroke="#3a4454"
-                  stroke-width="10"
-                />
+
+                <!-- Humo: nubecitas que suben y se desvanecen, en dos
+                     chimeneas con ritmos desfasados -->
+                <g fill="#c6ced8">
+                  <circle class="smoke-puff" cx="35" cy="26" r="5" />
+                  <circle class="smoke-puff puff-2" cx="35" cy="26" r="4" />
+                  <circle class="smoke-puff puff-3" cx="35" cy="26" r="5" />
+                  <circle class="smoke-puff puff-2" cx="63" cy="17" r="5" />
+                  <circle class="smoke-puff puff-3" cx="63" cy="17" r="4" />
+                  <circle class="smoke-puff" cx="63" cy="17" r="5" />
+                </g>
+
+                <!-- Engranajes: cada uno agrupa su aro + rayos internos.
+                     Sin los rayos, un círculo girando no se nota. -->
+                <g class="mfg-gear mfg-gear-1" stroke="#3a4454">
+                  <circle cx="132" cy="64" r="22" fill="none" stroke-width="10" />
+                  <line x1="132" y1="50" x2="132" y2="78" stroke-width="6" />
+                  <line x1="118" y1="64" x2="146" y2="64" stroke-width="6" />
+                </g>
+                <g class="mfg-gear mfg-gear-2" stroke="#3a4454">
+                  <circle cx="177" cy="50" r="19" fill="none" stroke-width="9" />
+                  <line x1="177" y1="38" x2="177" y2="62" stroke-width="5" />
+                  <line x1="165" y1="50" x2="189" y2="50" stroke-width="5" />
+                </g>
+                <g class="mfg-gear mfg-gear-3" stroke="#3a4454">
+                  <circle cx="181" cy="88" r="22" fill="none" stroke-width="10" />
+                  <line x1="181" y1="74" x2="181" y2="102" stroke-width="6" />
+                  <line x1="167" y1="88" x2="195" y2="88" stroke-width="6" />
+                </g>
+
                 <rect x="95" y="92" width="110" height="13" rx="6" fill="#5e6b7c" />
-                <rect x="112" y="78" width="18" height="14" fill="#b8763a" />
-                <rect x="140" y="73" width="18" height="19" fill="#d3944a" />
-                <path
-                  d="M27 22 C20 9 39 8 43 19 C50 7 69 12 65 26"
-                  fill="none"
-                  stroke="#c6ced8"
-                  stroke-width="8"
-                  stroke-linecap="round"
-                />
+
+                <!-- Cajas agrupadas: avanzan juntas por la banda
+                     transportadora y reaparecen al inicio -->
+                <g class="belt-boxes">
+                  <rect x="112" y="78" width="18" height="14" fill="#b8763a" />
+                  <rect x="140" y="73" width="18" height="19" fill="#d3944a" />
+                </g>
               </svg>
             </div>
 
@@ -293,24 +339,34 @@
                 <rect x="127" y="58" width="13" height="15" fill="#1f4e8c" />
                 <rect x="105" y="84" width="13" height="20" fill="#1f4e8c" />
                 <rect x="127" y="84" width="13" height="20" fill="#1f4e8c" />
+                <!-- El mástil queda fijo; el brazo gira sobre su punta (38,19).
+                     La carga va ANIDADA dentro del brazo: hereda su giro y
+                     además pendulea con su propia animación. -->
                 <line x1="38" y1="102" x2="38" y2="19" stroke="#e8a13c" stroke-width="7" />
-                <line x1="23" y1="30" x2="143" y2="30" stroke="#e8a13c" stroke-width="7" />
-                <line x1="38" y1="19" x2="78" y2="30" stroke="#e8a13c" stroke-width="4" />
-                <line x1="38" y1="19" x2="23" y2="30" stroke="#e8a13c" stroke-width="4" />
-                <line x1="129" y1="30" x2="129" y2="55" stroke="#2c3646" stroke-width="3" />
-                <rect x="116" y="55" width="25" height="12" fill="#2c3646" />
-                <rect
-                  x="157"
-                  y="70"
-                  width="45"
-                  height="32"
-                  fill="#f8fbff"
-                  stroke="#6885a8"
-                  stroke-width="3"
-                  transform="rotate(9 180 86)"
-                />
-                <line x1="166" y1="79" x2="194" y2="84" stroke="#6885a8" stroke-width="2" />
-                <line x1="171" y1="91" x2="194" y2="95" stroke="#6885a8" stroke-width="2" />
+                <g class="crane-arm">
+                  <line x1="23" y1="30" x2="143" y2="30" stroke="#e8a13c" stroke-width="7" />
+                  <line x1="38" y1="19" x2="78" y2="30" stroke="#e8a13c" stroke-width="4" />
+                  <line x1="38" y1="19" x2="23" y2="30" stroke="#e8a13c" stroke-width="4" />
+                  <g class="crane-load">
+                    <line x1="129" y1="30" x2="129" y2="55" stroke="#2c3646" stroke-width="3" />
+                    <rect x="116" y="55" width="25" height="12" fill="#2c3646" />
+                  </g>
+                </g>
+                <!-- Plano: agrupado con sus líneas para que aleteen juntos -->
+                <g class="blueprint">
+                  <rect
+                    x="157"
+                    y="70"
+                    width="45"
+                    height="32"
+                    fill="#f8fbff"
+                    stroke="#6885a8"
+                    stroke-width="3"
+                    transform="rotate(9 180 86)"
+                  />
+                  <line x1="166" y1="79" x2="194" y2="84" stroke="#6885a8" stroke-width="2" />
+                  <line x1="171" y1="91" x2="194" y2="95" stroke="#6885a8" stroke-width="2" />
+                </g>
               </svg>
             </div>
 
@@ -339,7 +395,7 @@
 
       <div
         class="step clickable"
-        data-title="Sector servicios"
+        data-title="Sector servicios (terciario)"
         data-sector="Sector terciario"
         data-desc="No produce bienes físicos: presta servicios que distribuyen la producción, conectan a las personas y hacen funcionar la economía."
         data-list="Electricidad, gas y agua|Comercio|Transporte, almacenamiento, correo y mensajería|Alojamiento y restaurantes|Telecomunicaciones y otros servicios de información|Administración pública y defensa|Servicios prestados a empresas|Servicios financieros, seguros y pensiones|Otros servicios"
@@ -378,6 +434,9 @@
     </p>
   </aside>
 
-  <script src="script.js"></script>
+  <!-- JS modular: drawer.js define AppDrawer; interactions.js lo usa.
+       El orden de carga importa. -->
+  <script src="js/drawer.js"></script>
+  <script src="js/interactions.js"></script>
 </body>
 </html>

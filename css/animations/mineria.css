@@ -1,0 +1,72 @@
+/* animations/mineria.css — solo se toca este archivo
+   para cambiar la animación de: mineria e hidrocarburos */
+
+/* Camión: vibración sutil de suspensión, como con el motor encendido.
+   Las ruedas están fuera del grupo y no se mueven: solo tiembla la
+   carrocería sobre ellas. */
+.mine-truck {
+  animation: truck-idle 0.7s ease-in-out infinite;
+}
+
+@keyframes truck-idle {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-1.5px);
+  }
+}
+
+/* Llama del gas: parpadea estirándose y encogiéndose desde su base
+   (106, 103). Los pasos intermedios irregulares evitan que el fuego
+   se vea mecánico. */
+.mine-flame {
+  transform-origin: 106px 103px;
+  animation: flame-flicker 1.3s ease-in-out infinite;
+}
+
+@keyframes flame-flicker {
+  0%,
+  100% {
+    transform: scale(1, 1);
+    opacity: 1;
+  }
+
+  30% {
+    transform: scale(1.1, 0.9);
+    opacity: 0.9;
+  }
+
+  60% {
+    transform: scale(0.92, 1.08);
+    opacity: 1;
+  }
+
+  80% {
+    transform: scale(1.05, 0.95);
+    opacity: 0.85;
+  }
+}
+
+/* Balancín petrolero: el brazo cabecea pivotando sobre el punto donde
+   se apoya en las patas en A (155, 47), en coordenadas del viewBox
+   (misma técnica que la grúa de construcción). La cabeza, al estar en
+   la punta, es la que más sube y baja: el clásico "caballito" de los
+   pozos de petróleo. */
+.pump-beam {
+  transform-origin: 155px 47px;
+  animation: pump-nod 3s ease-in-out infinite;
+}
+
+@keyframes pump-nod {
+  0%,
+  100% {
+    transform: rotate(-5deg);
+  }
+
+  50% {
+    transform: rotate(5deg);
+  }
+}

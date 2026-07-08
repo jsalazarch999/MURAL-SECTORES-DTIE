@@ -1,0 +1,80 @@
+/* ============================================
+   connector.css — La economía en movimiento
+   ============================================ */
+
+/* CONECTOR CENTRAL */
+
+.connector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.arrow {
+  width: 100%;
+  height: 52px;
+  position: relative;
+}
+
+.arrow::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 16px;
+  width: 72%;
+  /* La flecha ahora cuenta la historia: nace verde (naturaleza) y termina azul (proceso) */
+  background: linear-gradient(90deg, rgba(35, 122, 86, 0.35), var(--blue));
+  border-radius: 99px;
+  animation: flow 1.8s infinite linear;
+}
+
+.arrow::after {
+  content: "";
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 24px solid transparent;
+  border-bottom: 24px solid transparent;
+  border-left: 34px solid var(--blue);
+}
+
+.badge {
+  width: min(100%, 190px);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffffff 0 42%, var(--blue2) 43% 100%);
+  border: 5px solid var(--blue);
+  display: grid;
+  place-items: center;
+  text-align: center;
+  font-weight: 900;
+  color: var(--blue);
+  box-shadow: 0 10px 28px rgba(var(--shadow-color), 0.15);
+  padding: 16px;
+}
+
+.badge .gear {
+  font-size: 46px;
+  display: block;
+  animation: spin 5s linear infinite;
+}
+
+.hint {
+  font-size: clamp(11px, 1vw, 14px);
+  color: var(--ink);
+  text-align: center;
+  font-weight: 700;
+  background: white;
+  border: 1px dashed var(--line-strong);
+  border-radius: 14px;
+  padding: 8px;
+}
+

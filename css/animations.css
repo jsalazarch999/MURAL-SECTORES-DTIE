@@ -1,0 +1,259 @@
+/* ============================================
+   animations.css — La economía en movimiento
+   ============================================ */
+
+/* ANIMACIONES */
+
+@keyframes flow {
+  0% {
+    filter: saturate(1);
+    opacity: 0.72;
+  }
+
+  50% {
+    filter: saturate(1.4);
+    opacity: 1;
+  }
+
+  100% {
+    filter: saturate(1);
+    opacity: 0.72;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.pulse {
+  animation: pulse 0.7s ease;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(31, 78, 140, 0.45);
+  }
+
+  100% {
+    box-shadow: 0 0 0 20px rgba(31, 78, 140, 0);
+  }
+}
+
+/* ANIMACIÓN: ILUSTRACIÓN DE MANUFACTURA */
+
+/* Engranajes: giran a velocidades distintas, y el del medio en sentido
+   contrario, como si engranaran de verdad */
+.mfg-gear {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: gear-spin 6s linear infinite;
+}
+
+.mfg-gear-2 {
+  animation-duration: 5s;
+  animation-direction: reverse;
+}
+
+.mfg-gear-3 {
+  animation-duration: 7s;
+}
+
+@keyframes gear-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Humo: cada nubecita sube, crece y se desvanece. Los delays escalonados
+   crean la ilusión de una columna continua con solo 3 círculos por chimenea. */
+.smoke-puff {
+  transform-box: fill-box;
+  transform-origin: center;
+  opacity: 0;
+  animation: smoke-rise 2.8s ease-out infinite;
+}
+
+.puff-2 {
+  animation-delay: 0.9s;
+}
+
+.puff-3 {
+  animation-delay: 1.8s;
+}
+
+@keyframes smoke-rise {
+  0% {
+    transform: translateY(0) scale(0.5);
+    opacity: 0.85;
+  }
+
+  70% {
+    opacity: 0.35;
+  }
+
+  100% {
+    transform: translateY(-24px) scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* Cajas: recorren la banda y reaparecen al inicio; los fundidos en los
+   extremos disimulan el salto del bucle */
+.belt-boxes {
+  animation: belt-move 4.5s linear infinite;
+}
+
+@keyframes belt-move {
+  0% {
+    transform: translateX(-26px);
+    opacity: 0;
+  }
+
+  12% {
+    opacity: 1;
+  }
+
+  85% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(44px);
+    opacity: 0;
+  }
+}
+
+/* ANIMACIÓN: ILUSTRACIÓN DE PESCA */
+
+/* Las olas se dibujan una onda más anchas que el SVG (de -40 a 240) y se
+   desplazan exactamente 40px, el ancho de una onda completa. Al reiniciar
+   el bucle la posición coincide y el movimiento parece infinito. */
+.sea-water {
+  animation: wave-drift 5s linear infinite;
+}
+
+.sea-foam {
+  animation: wave-drift 3.5s linear infinite;
+}
+
+@keyframes wave-drift {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-40px);
+  }
+}
+
+/* El barco se mece: rota levemente y sube/baja siguiendo el ritmo del mar */
+.sea-boat {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: boat-rock 3.5s ease-in-out infinite;
+}
+
+@keyframes boat-rock {
+  0%,
+  100% {
+    transform: rotate(-2deg) translateY(0);
+  }
+
+  50% {
+    transform: rotate(2deg) translateY(3px);
+  }
+}
+
+/* El pez nada en el sitio con un vaivén corto */
+.sea-fish {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: fish-swim 2.6s ease-in-out infinite;
+}
+
+@keyframes fish-swim {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+
+  25% {
+    transform: translate(-3px, -2px) rotate(-2deg);
+  }
+
+  75% {
+    transform: translate(2px, 2px) rotate(2deg);
+  }
+}
+
+/* ANIMACIÓN: ILUSTRACIÓN DE AGRICULTURA */
+
+/* transform-box: fill-box hace que el origen de giro se calcule sobre la
+   propia planta (y no sobre todo el SVG), clave para que el vaivén pivote
+   desde la base del tallo. */
+.agri-plant {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: sway 3.2s ease-in-out infinite;
+}
+
+.agri-plant-2 {
+  animation-duration: 3.8s;
+  animation-delay: -1.4s; /* desfasada para que no se muevan al unísono */
+}
+
+@keyframes sway {
+  0%,
+  100% {
+    transform: rotate(-3.5deg);
+  }
+
+  50% {
+    transform: rotate(3.5deg);
+  }
+}
+
+.agri-sun {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: sun-glow 4s ease-in-out infinite;
+}
+
+@keyframes sun-glow {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.12);
+    opacity: 0.85;
+  }
+}
+
+/* Respeto por usuarios que prefieren menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+  .agri-plant,
+  .agri-sun,
+  .sea-water,
+  .sea-foam,
+  .sea-boat,
+  .sea-fish,
+  .mfg-gear,
+  .smoke-puff,
+  .belt-boxes,
+  .arrow::before,
+  .badge .gear {
+    animation: none;
+  }
+
+  /* Sin animación, el humo debe verse fijo en vez de invisible */
+  .smoke-puff {
+    opacity: 0.6;
+    transform: translateY(-8px);
+  }
+}
+

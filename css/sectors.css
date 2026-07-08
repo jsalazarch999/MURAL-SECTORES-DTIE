@@ -1,0 +1,175 @@
+/* ============================================
+   sectors.css — La economía en movimiento
+   ============================================ */
+
+/* SECTORES */
+
+.sector {
+  border-radius: 24px;
+  padding: 16px;
+  background: var(--card);
+  box-shadow: 0 8px 24px rgba(var(--shadow-color), 0.1);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  border: 3px solid transparent;
+}
+
+.primary {
+  border-color: var(--green);
+  background: linear-gradient(180deg, #ffffff 0%, var(--green2) 100%);
+}
+
+.secondary {
+  border-color: var(--orange);
+  background: linear-gradient(180deg, #ffffff 0%, var(--orange2) 100%);
+}
+
+.sector-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.icon-badge {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 30px;
+  color: white;
+  flex: 0 0 auto;
+}
+
+.primary .icon-badge {
+  background: var(--green);
+}
+
+.secondary .icon-badge {
+  background: var(--orange);
+}
+
+h2 {
+  margin: 0;
+  color: white;
+  letter-spacing: 1px;
+  font-size: clamp(22px, 2.4vw, 36px);
+  padding: 8px 15px;
+  border-radius: 16px;
+  flex: 1;
+}
+
+.primary h2 {
+  background: linear-gradient(135deg, var(--green), #2e9068);
+}
+
+.secondary h2 {
+  background: linear-gradient(135deg, var(--orange), #d97428);
+}
+
+.sector-desc {
+  margin: -3px 0 12px 67px;
+  color: var(--ink);
+  font-size: clamp(12px, 1vw, 16px);
+  font-weight: 700;
+}
+
+/* TARJETAS */
+
+.cards {
+  display: grid;
+  gap: 10px;
+  min-height: 0;
+  flex: 1;
+}
+
+.primary .cards {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.secondary .cards {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.card {
+  border-radius: 18px;
+  border: 2px solid var(--line);
+  background: white;
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    border-color 0.18s ease;
+  min-height: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.primary .card {
+  border-color: var(--green-soft);
+}
+
+.secondary .card {
+  border-color: var(--orange-soft);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 22px rgba(var(--shadow-color), 0.15);
+}
+
+.card.active {
+  transform: translateY(-5px) scale(1.01);
+  box-shadow: 0 14px 28px rgba(var(--shadow-color), 0.2);
+}
+
+.primary .card.active {
+  border-color: var(--green);
+}
+
+.secondary .card.active {
+  border-color: var(--orange);
+}
+
+.card h3 {
+  margin: 0 0 6px;
+  text-align: center;
+  font-size: clamp(15px, 1.5vw, 22px);
+  letter-spacing: 0.3px;
+}
+
+.primary .card h3 {
+  color: var(--green);
+}
+
+.secondary .card h3 {
+  color: var(--orange);
+}
+
+.illustration {
+  height: clamp(78px, 14vh, 140px);
+  display: grid;
+  place-items: center;
+  margin: 2px 0 8px;
+}
+
+.illustration svg {
+  width: 100%;
+  height: 100%;
+}
+
+.card p {
+  margin: 0;
+  text-align: center;
+  color: var(--ink);
+  font-size: clamp(11px, 1vw, 15px);
+  line-height: 1.25;
+  font-weight: 600;
+}
+

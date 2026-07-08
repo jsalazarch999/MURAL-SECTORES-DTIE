@@ -1,0 +1,51 @@
+/* ============================================
+   base.css — La economía en movimiento
+   ============================================ */
+
+:root {
+  /* Paleta principal: tres colores con la misma "familia" de saturación y luminosidad */
+  --green: #237a56;        /* verde bosque: sector primario (naturaleza) */
+  --green2: #e3f2e9;
+  --green-soft: #a8d5bc;   /* borde de tarjetas primarias */
+  --orange: #c75b12;       /* cobre: sector secundario (industria) */
+  --orange2: #fbeddf;
+  --orange-soft: #efbe93;  /* borde de tarjetas secundarias */
+  --blue: #1f4e8c;         /* azul petróleo: proceso / transformación */
+  --blue2: #e8f0fa;
+
+  /* Neutros */
+  --dark: #1b2a41;         /* texto principal */
+  --headline: #14274e;     /* titulares */
+  --ink: #3a4454;          /* texto de párrafos */
+  --muted: #5e6b7c;        /* texto secundario */
+  --line: #d5dfe9;         /* bordes neutros */
+  --line-strong: #b9c9d9;
+
+  --bg: #f4f7fa;
+  --card: #ffffff;
+
+  /* Sombra unificada (derivada del azul oscuro, no del azul puro) */
+  --shadow-color: 27, 42, 65;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(135deg, #f8fafc, #edf3f0);
+  color: var(--dark);
+  overflow: hidden;
+}
+
+.screen {
+  width: 100vw;
+  height: 100vh;
+  padding: 18px 28px 16px;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 10px;
+}
+

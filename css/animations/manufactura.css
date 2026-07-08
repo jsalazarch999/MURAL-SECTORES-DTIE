@@ -1,0 +1,87 @@
+/* animations/manufactura.css — solo se toca este archivo
+   para cambiar la animación de: manufactura */
+
+/* ANIMACIÓN: ILUSTRACIÓN DE MANUFACTURA */
+
+/* Engranajes: giran a velocidades distintas, y el del medio en sentido
+   contrario, como si engranaran de verdad */
+.mfg-gear {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: gear-spin 6s linear infinite;
+}
+
+.mfg-gear-2 {
+  animation-duration: 5s;
+  animation-direction: reverse;
+}
+
+.mfg-gear-3 {
+  animation-duration: 7s;
+}
+
+@keyframes gear-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Humo: cada nubecita sube, crece y se desvanece. Los delays escalonados
+   crean la ilusión de una columna continua con solo 3 círculos por chimenea. */
+.smoke-puff {
+  transform-box: fill-box;
+  transform-origin: center;
+  opacity: 0;
+  animation: smoke-rise 2.8s ease-out infinite;
+}
+
+.puff-2 {
+  animation-delay: 0.9s;
+}
+
+.puff-3 {
+  animation-delay: 1.8s;
+}
+
+@keyframes smoke-rise {
+  0% {
+    transform: translateY(0) scale(0.5);
+    opacity: 0.85;
+  }
+
+  70% {
+    opacity: 0.35;
+  }
+
+  100% {
+    transform: translateY(-24px) scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* Cajas: recorren la banda y reaparecen al inicio; los fundidos en los
+   extremos disimulan el salto del bucle */
+.belt-boxes {
+  animation: belt-move 4.5s linear infinite;
+}
+
+@keyframes belt-move {
+  0% {
+    transform: translateX(-26px);
+    opacity: 0;
+  }
+
+  12% {
+    opacity: 1;
+  }
+
+  85% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(44px);
+    opacity: 0;
+  }
+}
+

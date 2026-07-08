@@ -1,0 +1,49 @@
+/* animations/agricultura.css — solo se toca este archivo
+   para cambiar la animación de: agricultura */
+
+/* ANIMACIÓN: ILUSTRACIÓN DE AGRICULTURA */
+
+/* transform-box: fill-box hace que el origen de giro se calcule sobre la
+   propia planta (y no sobre todo el SVG), clave para que el vaivén pivote
+   desde la base del tallo. */
+.agri-plant {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: sway 3.2s ease-in-out infinite;
+}
+
+.agri-plant-2 {
+  animation-duration: 3.8s;
+  animation-delay: -1.4s; /* desfasada para que no se muevan al unísono */
+}
+
+@keyframes sway {
+  0%,
+  100% {
+    transform: rotate(-3.5deg);
+  }
+
+  50% {
+    transform: rotate(3.5deg);
+  }
+}
+
+.agri-sun {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: sun-glow 4s ease-in-out infinite;
+}
+
+@keyframes sun-glow {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.12);
+    opacity: 0.85;
+  }
+}
+

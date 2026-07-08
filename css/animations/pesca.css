@@ -1,0 +1,66 @@
+/* animations/pesca.css — solo se toca este archivo
+   para cambiar la animación de: pesca */
+
+/* ANIMACIÓN: ILUSTRACIÓN DE PESCA */
+
+/* Las olas se dibujan una onda más anchas que el SVG (de -40 a 240) y se
+   desplazan exactamente 40px, el ancho de una onda completa. Al reiniciar
+   el bucle la posición coincide y el movimiento parece infinito. */
+.sea-water {
+  animation: wave-drift 5s linear infinite;
+}
+
+.sea-foam {
+  animation: wave-drift 3.5s linear infinite;
+}
+
+@keyframes wave-drift {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-40px);
+  }
+}
+
+/* El barco se mece: rota levemente y sube/baja siguiendo el ritmo del mar */
+.sea-boat {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: boat-rock 3.5s ease-in-out infinite;
+}
+
+@keyframes boat-rock {
+  0%,
+  100% {
+    transform: rotate(-2deg) translateY(0);
+  }
+
+  50% {
+    transform: rotate(2deg) translateY(3px);
+  }
+}
+
+/* El pez nada en el sitio con un vaivén corto */
+.sea-fish {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: fish-swim 2.6s ease-in-out infinite;
+}
+
+@keyframes fish-swim {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+
+  25% {
+    transform: translate(-3px, -2px) rotate(-2deg);
+  }
+
+  75% {
+    transform: translate(2px, 2px) rotate(2deg);
+  }
+}
+

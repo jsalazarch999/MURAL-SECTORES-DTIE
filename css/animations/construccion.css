@@ -1,0 +1,61 @@
+/* animations/construccion.css — solo se toca este archivo
+   para cambiar la animación de: construccion */
+
+/* El brazo de la grúa gira lentamente sobre la punta del mástil.
+   Aquí NO usamos transform-box: fill-box (como en las otras tarjetas)
+   porque el pivote no está en el centro de la figura sino en un punto
+   concreto del dibujo: la punta del mástil en (38, 19). Con el
+   transform-box por defecto (view-box), transform-origin en px se mide
+   en las coordenadas del viewBox del SVG. */
+.crane-arm {
+  transform-origin: 38px 19px;
+  animation: crane-slew 7s ease-in-out infinite;
+}
+
+@keyframes crane-slew {
+  0%,
+  100% {
+    transform: rotate(-1.5deg);
+  }
+
+  50% {
+    transform: rotate(1.5deg);
+  }
+}
+
+/* La carga pendulea colgada del cable: pivota donde el cable toca el
+   brazo (129, 30). Como está anidada dentro de .crane-arm, ambos
+   movimientos se suman y el balanceo se ve natural. */
+.crane-load {
+  transform-origin: 129px 30px;
+  animation: load-swing 2.8s ease-in-out infinite;
+}
+
+@keyframes load-swing {
+  0%,
+  100% {
+    transform: rotate(-4deg);
+  }
+
+  50% {
+    transform: rotate(4deg);
+  }
+}
+
+/* El plano aletea apenas, como papel al viento */
+.blueprint {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: paper-flutter 3.4s ease-in-out infinite;
+}
+
+@keyframes paper-flutter {
+  0%,
+  100% {
+    transform: rotate(0deg) translateY(0);
+  }
+
+  50% {
+    transform: rotate(-2deg) translateY(-2px);
+  }
+}

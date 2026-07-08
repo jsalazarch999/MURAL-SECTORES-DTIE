@@ -1,0 +1,53 @@
+/* ============================================
+   responsive.css — La economía en movimiento
+   ============================================ */
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+  body {
+    overflow: auto;
+  }
+
+  .screen {
+    height: auto;
+    min-height: 100vh;
+    padding: 12px;
+    overflow: auto;
+  }
+
+  .main {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .connector {
+    order: 2;
+    flex-direction: row;
+  }
+
+  .secondary {
+    order: 3;
+  }
+
+  .primary .cards,
+  .secondary .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .info-row {
+    grid-template-columns: 1fr;
+  }
+
+  .mini-chart {
+    display: none;
+  }
+
+  .badge {
+    width: 120px;
+  }
+
+  .arrow {
+    display: none;
+  }
+}
