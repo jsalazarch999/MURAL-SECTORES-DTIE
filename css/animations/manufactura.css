@@ -85,3 +85,13 @@
   }
 }
 
+/* Con movimiento reducido, el humo debe verse fijo en vez de quedar
+   invisible (su estado base es opacity: 0). Este ajuste es propio de
+   esta ilustración, por eso vive aquí y no en interfaz.css. */
+@media (prefers-reduced-motion: reduce) {
+  .smoke-puff {
+    opacity: 0.6;
+    transform: translateY(-8px);
+  }
+}
+

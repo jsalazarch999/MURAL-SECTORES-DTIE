@@ -40,32 +40,19 @@
   }
 }
 
-/* Respeto por usuarios que prefieren menos movimiento */
+/* Respeto por usuarios que prefieren menos movimiento.
+   La regla es GENÉRICA: apaga cualquier animación dentro de cualquier
+   ilustración, incluidas las que se agreguen en el futuro. Así, crear
+   una animación nueva ya NO requiere tocar este archivo.
+   Si una animación necesita un estado estático especial (p. ej. el humo,
+   que en reposo debe verse y no quedar invisible), ese ajuste vive en el
+   archivo de SU ilustración, no aquí. */
 @media (prefers-reduced-motion: reduce) {
-  .agri-plant,
-  .agri-sun,
-  .sea-water,
-  .sea-foam,
-  .sea-boat,
-  .sea-fish,
-  .mine-truck,
-  .mine-flame,
-  .pump-beam,
-  .mfg-gear,
-  .smoke-puff,
-  .belt-boxes,
-  .crane-arm,
-  .crane-load,
-  .blueprint,
+  .illustration *,
+  .mini-chart *,
   .arrow::before,
   .badge .gear {
-    animation: none;
-  }
-
-  /* Sin animación, el humo debe verse fijo en vez de invisible */
-  .smoke-puff {
-    opacity: 0.6;
-    transform: translateY(-8px);
+    animation: none !important;
   }
 }
 
