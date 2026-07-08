@@ -238,7 +238,22 @@
 
         <div class="badge">
           <div>
-            <span class="gear" aria-hidden="true">⚙️</span>
+            <!-- Engranaje dibujado (no emoji): se ve igual en todos los
+                 dispositivos y usa el azul de la paleta -->
+            <svg class="gear" viewBox="0 0 48 48" aria-hidden="true">
+              <g fill="var(--blue)">
+                <rect x="21" y="1" width="6" height="11" rx="2" />
+                <rect x="21" y="1" width="6" height="11" rx="2" transform="rotate(45 24 24)" />
+                <rect x="21" y="1" width="6" height="11" rx="2" transform="rotate(90 24 24)" />
+                <rect x="21" y="1" width="6" height="11" rx="2" transform="rotate(135 24 24)" />
+                <rect x="21" y="1" width="6" height="11" rx="2" transform="rotate(180 24 24)" />
+                <rect x="21" y="1" width="6" height="11" rx="2" transform="rotate(225 24 24)" />
+                <rect x="21" y="1" width="6" height="11" rx="2" transform="rotate(270 24 24)" />
+                <rect x="21" y="1" width="6" height="11" rx="2" transform="rotate(315 24 24)" />
+                <circle cx="24" cy="24" r="15" />
+              </g>
+              <circle cx="24" cy="24" r="6.5" fill="var(--blue2)" />
+            </svg>
             Transformación<br />
             productiva
           </div>
@@ -395,7 +410,7 @@
 
       <div
         class="step clickable"
-        data-title="Sector servicios (terciario)"
+        data-title="Sector servicios"
         data-sector="Sector terciario"
         data-desc="No produce bienes físicos: presta servicios que distribuyen la producción, conectan a las personas y hacen funcionar la economía."
         data-list="Electricidad, gas y agua|Comercio|Transporte, almacenamiento, correo y mensajería|Alojamiento y restaurantes|Telecomunicaciones y otros servicios de información|Administración pública y defensa|Servicios prestados a empresas|Servicios financieros, seguros y pensiones|Otros servicios"
@@ -403,8 +418,8 @@
       >
         <div class="step-num" aria-hidden="true">3</div>
         <div>
-          <strong>Bienes y desarrollo</strong>
-          <span>Los productos generan empleo y crecimiento.</span>
+          <strong>Sector Servicios</strong>
+          <span>Los servicios generan empleo y crecimiento.</span>
         </div>
       </div>
     </section>
